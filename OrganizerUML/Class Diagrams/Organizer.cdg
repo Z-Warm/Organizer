@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Organizer">
+  <ClassDiagramComponents>
+    <Class name="Users" package="" visibility="public" xPosition="468.0" yPosition="2.0">
+      <Fields>
+        <Field name="UserID" type="int" visibility="private" isStatic="true"/>
+        <Field name="UserName" type="String" visibility="private"/>
+        <Field name="GroupID" type="int" visibility="private"/>
+        <Field name="TeamLead" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="UsersGroups" package="" visibility="public" xPosition="15.0" yPosition="2.0">
+      <Fields>
+        <Field name="GroupID" type="int" visibility="private"/>
+        <Field name="GroupName" type="String" visibility="private"/>
+        <Field name="IsTeamLeads" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Issues" package="" visibility="public" xPosition="11.0" yPosition="215.0">
+      <Fields>
+        <Field name="IssueID" type="int" visibility="private"/>
+        <Field name="IssueName" type="String" visibility="private"/>
+        <Field name="IssueDescription" type="String" visibility="private"/>
+        <Field name="UserID" type="int" visibility="private"/>
+        <Field name="StatusID" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="ProblemStatus" package="" visibility="public" xPosition="15.0" yPosition="451.0">
+      <Fields>
+        <Field name="StatusID" type="int" visibility="private"/>
+        <Field name="StatusName" type="Name" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Tickets" package="" visibility="public" xPosition="253.0" yPosition="294.0">
+      <Fields>
+        <Field name="TicketID" type="int" visibility="private"/>
+        <Field name="TicketName" type="String" visibility="private"/>
+        <Field name="IssueID" type="int" visibility="private"/>
+        <Field name="SprintTime" type="Date" visibility="private"/>
+        <Field name="GroupID" type="int" visibility="private"/>
+        <Field name="ParentTicket" type="int" visibility="private"/>
+        <Field name="StatusID" type="int" visibility="private"/>
+        <Field name="CodeReview" type="bool" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Assign" package="" visibility="public" xPosition="273.0" yPosition="94.0">
+      <Fields>
+        <Field name="TicketID" type="int" visibility="private"/>
+        <Field name="UserID" type="int" visibility="private"/>
+        <Field name="Comments" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="UserReports" package="" visibility="public" xPosition="468.0" yPosition="234.0">
+      <Fields>
+        <Field name="UserID" type="int" visibility="private"/>
+        <Field name="TicketID" type="int" visibility="private"/>
+        <Field name="Report" type="String" visibility="private"/>
+        <Field name="Approve" type="bool" visibility="private"/>
+        <Field name="ReportID" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="StatusStory" package="" visibility="public" xPosition="468.0" yPosition="422.0">
+      <Fields>
+        <Field name="UserID" type="int" visibility="private"/>
+        <Field name="TicketID" type="int" visibility="private"/>
+        <Field name="StatusID" type="int" visibility="private"/>
+        <Field name="Comments" type="String" visibility="private"/>
+        <Field name="StoryID" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="TicketID" source="StatusStory" target="Tickets" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="UserID" source="StatusStory" target="Users" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="GroupID" source="Users" target="UsersGroups" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="LinkedList"/>
+    <HasRelation name="IssueID" source="Tickets" target="Issues" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="StatusID" source="Issues" target="ProblemStatus" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="UserID" source="UserReports" target="Users" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="Group_ID" source="Tickets" target="UsersGroups" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="UserID" source="Issues" target="Users" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="StatusID" source="Tickets" target="ProblemStatus" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="ParentTikcket" source="Tickets" target="Tickets" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="TicketID" source="UserReports" target="Tickets" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="StatusID" source="StatusStory" target="ProblemStatus" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="UserID" source="Assign" target="Users" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="TicketID" source="Assign" target="Tickets" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="TeamLead" source="Users" target="Users" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
